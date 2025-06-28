@@ -543,15 +543,8 @@ class OutreachApp:
         elif attachment_to_send is None:
              # No PDF was specified, and no PDF was generated. This is fine, just proceed without.
              pass
-
-
-        # if attachment_to_send and not os.path.exists(attachment_to_send): # This check is now inside _handle_pdf_for_recipient
-            # if not is_part_of_campaign:
-                 # messagebox.showwarning("Attachment Warning", f"PDF for {recipient_email} not found at {attachment_to_send}. Sending without.")
-            else:
-                 print(f"Warning: PDF for {recipient_email} not found at {attachment_to_send}. Sending without.")
-            attachment_to_send = None
-
+        # The commented out block below is now entirely handled by _handle_pdf_for_recipient
+        # and the warning logic just above this. Removing it.
 
         # Actual sending
         success, send_message = send_gmail(
@@ -582,13 +575,13 @@ class OutreachApp:
                     }
                 )
             return True
-        else:
-            if not is_part_of_campaign:
-                 messagebox.showerror("Email Error", f"Failed to send email to {recipient_email}: {send_message}")
-                 self.update_status(f"Failed to send to {recipient_email}: {send_message}")
-            else:
+        else: # This else corresponds to "if success:"
+            if not is_part_of_campaign: # Indented correctly under the parent else
+                messagebox.showerror("Email Error", f"Failed to send email to {recipient_email}: {send_message}")
+                self.update_status(f"Failed to send to {recipient_email}: {send_message}")
+            else: # This else corresponds to "if not is_part_of_campaign:" and must align with it
                 print(f"Failed to send to {recipient_email}: {send_message}") # Log for campaign
-            return False
+            return False # This return belongs to the outer "if success: ... else: ..."
 
 
     def toggle_send_buttons_state(self, event=None):
