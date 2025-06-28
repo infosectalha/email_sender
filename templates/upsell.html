@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Enhancing Your Ongoing Security: {{ domain }}</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6;">
+    <p>Dear {{ client_name | default('Client') }},</p>
+
+    <p>I hope you found the recent vulnerability assessment report for <strong>{{ domain }}</strong> insightful and the recommendations actionable. It was a pleasure working with you to enhance your security posture.</p>
+
+    <p>Cybersecurity is an ongoing process, not a one-time fix. Threats evolve, and new vulnerabilities can emerge as your systems change. To ensure continued protection, I offer several services that might interest you:</p>
+    <ul style="list-style-type: disc; margin-left: 20px;">
+        <li><strong>Recurring Vulnerability Scans:</strong> Regular (e.g., monthly, quarterly) scans to proactively identify new issues. This includes a summary report and consultation on findings.</li>
+        <li><strong>Security Monitoring Retainer:</strong> Ongoing monitoring of key security indicators and alerts for your domain/network.</li>
+        <li><strong>Consultation Packages:</strong> Blocks of hours for ad-hoc security advice, incident response support, or implementation assistance.</li>
+        <li><strong>Security Awareness Training:</strong> For your team to help them identify and avoid common cyber threats like phishing.</li>
+    </ul>
+
+    {% if custom_note %}
+    <p><em>{{ custom_note }}</em></p>
+    {% endif %}
+
+    <p>Many of my clients find significant value in a recurring scan model, as it provides peace of mind and helps maintain a strong defensive posture over time. We could tailor a package that best suits your needs and budget.</p>
+
+    <p>Would you be open to a brief discussion about how these ongoing services could further benefit <strong>{{ domain }}</strong>?</p>
+
+    <p>Thank you for your continued trust.</p>
+
+    {{ SIGNATURE_HTML | safe }}
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Regarding Your Online Presence: {{ domain }}</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6;">
+    <p>Dear {{ client_name | default('Sir/Madam') }},</p>
+
+    <p>My name is Muhammad Talha, a Cybersecurity Analyst. I was conducting some routine domain profiling and came across your website, <strong>{{ domain }}</strong>.</p>
+
+    <p>Often, initial public-facing scans can reveal minor configuration oversights that, while not immediately critical, could be indicative of areas for security posture improvement. This is a standard part of maintaining a secure online presence.</p>
+
+    {% if custom_note %}
+    <p><em>{{ custom_note }}</em></p>
+    {% endif %}
+
+    <p>I specialize in helping businesses identify and address such vulnerabilities. If you're interested in a complimentary, no-obligation basic assessment or would like to learn more about common web vulnerabilities, please feel free to reply to this email.</p>
+
+    <p>Thank you for your time and consideration.</p>
+
+    {{ SIGNATURE_HTML | safe }}
+</body>
+</html>

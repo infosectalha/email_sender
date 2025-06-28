@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Follow-up: Basic Security Scan Results for {{ domain }}</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6;">
+    <p>Dear {{ client_name | default('Client') }},</p>
+
+    <p>Following up on our previous communication or your request, I have performed a basic security scan on your domain, <strong>{{ domain }}</strong>. Please find a summary of the key observations below, and a more detailed (basic) report may be attached if applicable.</p>
+
+    {% if report_summary %}
+    <div style="padding: 10px; border: 1px solid #eee; background-color: #f9f9f9; margin-bottom: 15px;">
+        <strong>Key Observations:</strong>
+        <p>{{ report_summary | nl2br }}</p>
+    </div>
+    {% else %}
+    <p>The scan covered aspects such as [mention Nmap/Nikto findings briefly, e.g., open ports, server headers, basic SSL checks].</p>
+    {% endif %}
+
+    {% if custom_note %}
+    <p><strong>Note:</strong> <em>{{ custom_note }}</em></p>
+    {% endif %}
+
+    <p>This basic scan provides a high-level overview. For a comprehensive understanding of your security posture, including deeper vulnerabilities that tools like Nessus or manual penetration testing can uncover, a full assessment is recommended.</p>
+
+    <p>A full assessment would provide you with a detailed report, actionable recommendations, and a clearer path to mitigating potential risks. Would you be open to a brief chat about how a full scan could benefit your business, or would you like a quote for this service?</p>
+
+    <p>Thank you for the opportunity to provide this initial scan.</p>
+
+    {{ SIGNATURE_HTML | safe }}
+</body>
+</html>

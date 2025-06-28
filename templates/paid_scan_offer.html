@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Proposal: Comprehensive Security Assessment for {{ domain }}</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6;">
+    <p>Dear {{ client_name | default('Client') }},</p>
+
+    <p>Thank you for your interest in enhancing the security of your domain, <strong>{{ domain }}</strong>. Based on our preliminary discussions or your recent scan results, it's clear that a proactive approach to cybersecurity is valuable for your operations.</p>
+
+    <p>I offer a Comprehensive Security Assessment service designed to identify a wide range of vulnerabilities. This assessment typically involves:</p>
+    <ul style="list-style-type: disc; margin-left: 20px;">
+        <li>In-depth vulnerability scanning (e.g., using industry-standard tools like Nessus, or advanced open-source alternatives).</li>
+        <li>Manual verification of findings to reduce false positives.</li>
+        <li>Analysis of web application security (covering OWASP Top 10 vulnerabilities where applicable).</li>
+        <li>Network infrastructure review (ports, services, configurations).</li>
+        <li>A detailed report outlining identified vulnerabilities, their potential impact, and actionable remediation steps.</li>
+    </ul>
+
+    {% if report_summary %}
+    <p>Regarding the recent findings from [Nessus/Manual Scan/Previous Scan]:</p>
+    <div style="padding: 10px; border: 1px solid #eee; background-color: #f9f9f9; margin-bottom: 15px;">
+        <strong>Key Issues Highlighted:</strong>
+        <p>{{ report_summary | nl2br }}</p>
+        <p><em>A full report detailing these and other findings will be provided upon commencement of the paid engagement.</em></p>
+    </div>
+    {% endif %}
+
+    {% if custom_note %}
+    <p><strong>Additionally:</strong> <em>{{ custom_note }}</em></p>
+    {% endif %}
+
+    <p>Investing in a comprehensive scan can help protect your digital assets, maintain customer trust, and prevent costly security incidents. The attached PDF (if provided with this proposal) offers a sample of the reporting style or a general service overview.</p>
+
+    <p>The cost for this Comprehensive Security Assessment for <strong>{{ domain }}</strong> is [Propose Price/Price Range, e.g., $XXX or "starting from $YYY depending on scope"]. I am happy to provide a detailed quote tailored to your specific requirements.</p>
+
+    <p>Please let me know if you would like to proceed or have any questions.</p>
+
+    {{ SIGNATURE_HTML | safe }}
+</body>
+</html>
