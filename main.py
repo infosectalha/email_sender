@@ -161,11 +161,14 @@ class OutreachApp:
 
     def _load_email_templates(self):
         templates = self.template_manager.list_templates()
+        # print(f"[OutreachApp Debug] _load_email_templates received: {templates}") # REMOVED DEBUG
+        # print(f"[OutreachApp Debug] bool(templates) is: {bool(templates)}") # REMOVED DEBUG
         if templates:
             self.template_combo['values'] = templates
-            if templates: # Select first one if available
-                 self.template_combo.current(0)
-                 self.on_template_selected() # Trigger preview for the first template
+            # The inner 'if templates:' is redundant here because of the outer one.
+            # if templates:
+            self.template_combo.current(0)
+            self.on_template_selected() # Trigger preview for the first template
             self.update_status(f"{len(templates)} email templates loaded.")
         else:
             self.update_status("No email templates found in 'templates' directory.")

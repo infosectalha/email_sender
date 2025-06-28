@@ -20,6 +20,8 @@ class TemplateManager:
         else:
             self.template_dir = template_dir
 
+        # print(f"[TemplateManager Debug] Initializing with template_dir: {os.path.abspath(self.template_dir)}") # Debug print
+
         self.env = Environment(
             loader=FileSystemLoader(self.template_dir),
             autoescape=select_autoescape(['html', 'xml'])
@@ -32,10 +34,25 @@ class TemplateManager:
         Lists available HTML templates in the template directory.
         """
         try:
-            return [f for f in os.listdir(self.template_dir) if f.endswith('.html') and not f.startswith('.')]
+            all_files = os.listdir(self.template_dir)
+            # print(f"[TemplateManager Debug] Files found by os.listdir in '{self.template_dir}': {all_files}")
+
+            html_files = [f for f in all_files if f.endswith('.html')]
+            # print(f"[TemplateManager Debug] Files ending with .html: {html_files}")
+
+            final_templates = [f for f in html_files if not f.startswith('.')]
+            # print(f"[TemplateManager Debug] Final templates after filtering hidden: {final_templates}")
+
+            return final_templates
         except FileNotFoundError:
-            print(f"Error: Template directory not found at {self.template_dir}")
+            # Keep this error print as it's genuinely useful if dir is missing
+            print(f"[TemplateManager Error] Template directory not found at {self.template_dir} during list_templates call.")
             return []
+        except Exception as e:
+            # Keep this one too for unexpected issues
+            print(f"[TemplateManager Error] Unexpected error in list_templates for dir '{self.template_dir}': {e}")
+            return []
+
 
     def render_template(self, template_name, context=None):
         """
